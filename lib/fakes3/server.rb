@@ -203,7 +203,7 @@ module FakeS3
         if object
           response.body = XmlAdapter.copy_object_result(object)
         else
-          response.status = 400
+          response.status = 404
           response.body = XmlAdapter.error_no_such_key(s_req.object)
           response['Content-Type'] = "application/xml"
           response['Access-Control-Allow-Origin'] = @cors_allow_origin
@@ -242,7 +242,7 @@ module FakeS3
         if real_obj
           response.body = XmlAdapter.copy_object_result real_obj
         else
-          response.status = 400
+          response.status = 404
           response.body = XmlAdapter.error_no_such_key(s_req.object)
           response['Access-Control-Allow-Origin'] = @cors_allow_origin
         end
